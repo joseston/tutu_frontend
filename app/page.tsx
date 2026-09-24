@@ -45,6 +45,17 @@ export default function Home() {
           {backendStatus}
         </span>
       </div>
+
+      <div style={{ marginTop: "1.5rem", borderTop: "1px solid #334155", paddingTop: "1rem" }}>
+        <a
+          href="http://localhost:8000/docs"
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: "#38bdf8", fontSize: "0.85rem", textDecoration: "none" }}
+        >
+          Ver documentación de la API &rarr;
+        </a>
+      </div>
     </main>
   );
 }
