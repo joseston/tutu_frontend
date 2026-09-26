@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "super-grass-ae42",
+  "compatibility_date": "2024-09-25",
+  "assets": {
+    "directory": "./out"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
