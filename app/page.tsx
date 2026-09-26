@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from "react";
 
-// ponytail: direct fetch to localhost:8000 for minimal backend health status check
-// ceiling: hardcoded URL. Upgrade path: use NEXT_PUBLIC_API_URL env var.
+// ponytail: uses NEXT_PUBLIC_API_URL or falls back to localhost:8000
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 export default function Home() {
   const [backendStatus, setBackendStatus] = useState<string>("Verificando...");
   const [isOnline, setIsOnline] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/health")
+    fetch(`${API_URL}/health`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "healthy") {
@@ -21,7 +23,7 @@ export default function Home() {
         }
       })
       .catch(() => {
-        setBackendStatus("Desconectado (:8000)");
+        setBackendStatus("Desconectado");
         setIsOnline(false);
       });
   }, []);
@@ -112,7 +114,7 @@ export default function Home() {
             <span>Backend: {backendStatus}</span>
           </div>
           <a
-            href="http://localhost:8000/docs"
+            href={`${API_URL}/docs`}
             target="_blank"
             rel="noreferrer"
             className="api-link"
